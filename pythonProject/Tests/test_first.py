@@ -1,8 +1,38 @@
+# from src.main import A
+#
+# def test_main():
+#     assert A.x==1
 
-from src.main import A
 
-def test_main():
-    assert A.x==1
+def test_sum():
+    x = 1
+    y = 2
+    assert x + y == 3
+
+def test_devision():
+    x = 1
+    y = 2
+    assert x / y == 0.5
+
+# test_calculator
+
+import pytest
+
+from src.main import Calculator
+@pytest.mark.parametrize(   #Параметризация данных
+    "x, y, res",
+    [
+        (1, 2, 0.5),
+        (5, -1, -5),
+    ]
+)
+
+
+def test_divide(x, y, res):
+#    x = 1
+#    y = 2
+#    res = 0.5
+    assert Calculator().divide(x, y) == res
 
 
 # test_assert_examples.py
