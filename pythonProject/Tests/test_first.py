@@ -1,3 +1,8 @@
+import pytest
+from contextlib import nullcontext as does_not_raise
+
+
+
 # from src.main import A
 #
 # def test_main():
@@ -16,25 +21,39 @@ def test_devision():
 
 # test_calculator
 
-import pytest
+
 
 from src.main import Calculator
-@pytest.mark.parametrize(   #Параметризация данных
-    "x, y, res",
-    [
-        (1, 2, 0.5),
-        (5, -1, -5),
-    ]
-)
-
-
-def test_divide(x, y, res):
+class TestCalculator:
+    @pytest.mark.parametrize(   #Параметризация данных
+        "x, y, res, expectation",
+        [
+        (1, 2, 0.5, does_not_raise()),
+        (5, -1, -5, does_not_raise()),
+        (5, "-1", -5, pytest.raises(TypeError)),
+        ]
+    )
+    def test_divide(self, x, y, res, expectation):
+        with expectation:  #pytest.raises(TypeError): пример без использования does_not_raise
 #    x = 1
 #    y = 2
 #    res = 0.5
-    assert Calculator().divide(x, y) == res
+            assert Calculator().divide(x, y) == res
+
+    @pytest.mark.parametrize(
+        "x, y, res, expectation",
+        [
+            (3, 2, 5, does_not_raise()),
+            (4, -2, 2, does_not_raise()),
+            (5, "-3", -2, pytest.raises(TypeError)),
+        ]
+    )
+    def test_add(self, x, y, res, expectation):
+        with expectation:
+            assert Calculator().add(x, y) == res
 
 
+#-----------------------------------------------------------------------------------------
 # test_assert_examples.py
 def test_uppercase():
     assert "loud noises".upper() == "LOUD NOISES"
