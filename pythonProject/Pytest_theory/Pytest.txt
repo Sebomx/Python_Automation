@@ -1,0 +1,17 @@
+import pytest (для использования @pytest.mark. для параметризации)
+
+pytest -m <markername> -v (запуск маркированных тестов)
+
+pytest test_compare.py -v (для запуска тестов по названию файла)
+
+pytest -k great -v (для запуска тестов по ключевому слову great)
+
+@pytest.fixture (для использования фикстур в тестах)
+
+pytest test_multiplication.py -v --junitxml="result.xml" (генерация результата в xml формате)
+
+pytest test_failure.py -v --maxfail 1 (прекращение выполнения тестового набора после N упавших тестов)
+
+@pytest.mark.xfail - если тест провалится его результаты не будут учтены в отчете
+
+@pytest.mark.skip - используется для пропуска теста

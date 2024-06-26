@@ -9,10 +9,18 @@ from contextlib import nullcontext as does_not_raise
 #     assert A.x==1
 
 
-def test_sum():
-    x = 1
-    y = 2
-    assert x + y == 3
+
+@pytest.mark.parametrize(
+    "q, w, e",
+    [
+        (1, 2, 3),
+    ]
+)
+def test_sum(q, w, e):
+    return q + w
+#    x = 1
+#    y = 2
+    assert test_sum(q, w) == e
 
 def test_devision():
     x = 1
@@ -23,7 +31,7 @@ def test_devision():
 
 
 
-from src.main import Calculator
+# from src.main import Calculator
 class TestCalculator:
     @pytest.mark.parametrize(   #Параметризация данных
         "x, y, res, expectation",
@@ -66,5 +74,6 @@ def test_some_primes():
         if not any(num % div == 0 for div in range(2, num))
     }
 
+#----------------------------------------------------
 
 
