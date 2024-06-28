@@ -8,6 +8,7 @@ import pytest
 #     input = 39
 #     return input
 
+@pytest.fixture(scope='session' , autouse=True)
 def test_divisible_by_3(input_value):
     assert input_value % 3 == 0
 

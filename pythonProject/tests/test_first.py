@@ -30,8 +30,8 @@ def test_devision():
 # test_calculator
 
 
+from src.main import Calculator
 
-# from src.main import Calculator
 class TestCalculator:
     @pytest.mark.parametrize(   #Параметризация данных
         "x, y, res, expectation",
